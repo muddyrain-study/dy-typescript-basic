@@ -1,0 +1,8 @@
+{
+  "scripts": {
+    "dev": "npx nodemon --watch src -e ts --exec ts-node src/index.ts"
+  },
+  "dependencies": {
+    "@types/node": "^18.15.11"
+  }
+}
