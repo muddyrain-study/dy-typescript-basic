@@ -8,7 +8,9 @@
     // 默认环境
     "lib": ["ES2016"],
     // 编译输出
-    "outDir": "./dist"
+    "outDir": "./dist",
+    // 严格空类型检查
+    "strictNullChecks": true
   },
   "include": ["./src/"]
 }
