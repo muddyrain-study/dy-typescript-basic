@@ -1,9 +1,9 @@
-export const name = "muddyrain";
+import { Color, Mark } from "./enums";
+import { createDeck, printDeck } from "./funcs";
+import { Deck } from "./types";
 
-export function sum(a: number, b: number) {
-  return a + b;
-}
+const deck = createDeck();
 
-// export default {
-//   a: "a",
-// };
+printDeck(deck);
+
+export {};

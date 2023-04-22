@@ -1,4 +1,5 @@
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.findCards = exports.printDeck = exports.createDeck = void 0;
 const enums_1 = require("./enums");
 function createDeck() {
     const deck = [];
@@ -14,6 +15,7 @@ function createDeck() {
     }
     return deck;
 }
+exports.createDeck = createDeck;
 function printDeck(deck) {
     let result = "\n";
     deck.forEach((card, i) => {
@@ -25,6 +27,6 @@ function printDeck(deck) {
     });
     console.log(result);
 }
+exports.printDeck = printDeck;
 function findCards(color) { }
-const deck = createDeck();
-printDeck(deck);
+exports.findCards = findCards;
