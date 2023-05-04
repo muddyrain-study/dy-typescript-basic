@@ -6,7 +6,9 @@
     // 配置编译目标的使用模块化标准
     "module": "CommonJS",
     // 默认环境
-    "lib": ["ES2016"],
+    "lib": [
+      "ES2016"
+    ],
     // 编译输出
     "outDir": "./dist",
     // 严格空类型检查
@@ -18,7 +20,11 @@
     // 启用es模块化交互非es模块导出
     "esModuleInterop": true,
     // 模块解析策略
-    "moduleResolution": "node"
+    "moduleResolution": "node",
+    // 属性初始化严格执行
+    "strictPropertyInitialization": true
   },
-  "include": ["./src/"]
+  "include": [
+    "./src/"
+  ]
 }

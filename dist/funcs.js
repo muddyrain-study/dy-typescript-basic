@@ -10,17 +10,31 @@ function createDeck() {
             deck.push({
                 color: c,
                 mark: m,
+                getString() {
+                    return this.color + this.mark;
+                },
             });
         }
     }
+    deck.push({
+        type: "small",
+        getString: () => {
+            return "jo";
+        },
+    });
+    deck.push({
+        type: "big",
+        getString: () => {
+            return "JO";
+        },
+    });
     return deck;
 }
 exports.createDeck = createDeck;
 function printDeck(deck) {
     let result = "\n";
     deck.forEach((card, i) => {
-        let str = card.color + card.mark;
-        result += str + "\t";
+        result += card.getString();
         if ((i + 1) % 4 === 0) {
             result += "\n";
         }
