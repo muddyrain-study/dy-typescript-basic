@@ -1,15 +1,13 @@
-import { Dictionary } from "./dictionary";
+const methodName = "sayHello";
+class User {
+  constructor(public name: string, public age: number) {}
+  [methodName]() {}
+}
 
-const dic = new Dictionary<string, number>();
+const u = new User("zhangsan", 18);
 
-dic.set("a", 1);
-dic.set("b", 2);
-dic.set("a", 11);
-dic.set("c", 33);
-console.log(dic.size);
-dic.forEach((k, v) => {
-  console.log(k, v);
-});
+u[methodName]();
 
-dic.delete("c");
-console.log(dic.size);
+console.log(u["pid"]);
+
+u.name;
