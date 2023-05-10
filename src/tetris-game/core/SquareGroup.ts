@@ -6,6 +6,9 @@ export class SquareGroup {
   public get squares() {
     return this._squares;
   }
+  public get shape() {
+    return this._shape;
+  }
   public get centerPoint(): Point {
     return this._centerPoint;
   }
