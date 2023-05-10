@@ -22,7 +22,11 @@
     // 模块解析策略
     "moduleResolution": "node",
     // 属性初始化严格执行
-    "strictPropertyInitialization": true
+    "strictPropertyInitialization": true,
+    // 禁用隐式any推断类型
+    "noImplicitAny": true,
+    // 禁用隐式this推断类型
+    "noImplicitThis": true,
   },
   "include": [
     "./src/"

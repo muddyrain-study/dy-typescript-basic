@@ -1,13 +1,12 @@
-const methodName = "sayHello";
-class User {
-  constructor(public name: string, public age: number) {}
-  [methodName]() {}
+interface U {
+  name: string;
+  sayHello(this: U): void;
 }
+const user: U = {
+  name: "zhangsan",
+  sayHello() {
+    console.log(this.name);
+  },
+};
 
-const u = new User("zhangsan", 18);
-
-u[methodName]();
-
-console.log(u["pid"]);
-
-u.name;
+const say = user.sayHello;
