@@ -13,3 +13,8 @@ export interface IViewer {
    */
   remove: () => void;
 }
+
+/**
+ * 形状
+ */
+export type Shape = Point[];
