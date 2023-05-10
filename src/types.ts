@@ -1,7 +1,7 @@
 import { Color, Mark } from "./enums";
 
 export interface Card {
-  getString(): string;
+  getString(this: any): string;
 }
 
 export interface NormalCard extends Card {

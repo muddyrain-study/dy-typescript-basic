@@ -1,9 +1,21 @@
 {
   "scripts": {
     "dev": "npx nodemon --watch src -e ts --exec ts-node src/index.ts",
-    "build": "rd /s /q dist & tsc"
+    "build": "rd /s /q dist & tsc",
+    "webpack:dev": "webpack-dev-server --mode development",
+    "webpack:prod": "webpack --mode production"
   },
   "dependencies": {
-    "@types/node": "^18.15.11"
+    "@types/jquery": "^3.5.16",
+    "@types/node": "^18.15.11",
+    "jquery": "^3.6.4"
+  },
+  "devDependencies": {
+    "clean-webpack-plugin": "^4.0.0",
+    "html-webpack-plugin": "^5.5.1",
+    "ts-loader": "^9.4.2",
+    "webpack": "^5.82.0",
+    "webpack-cli": "^5.1.1",
+    "webpack-dev-server": "^4.15.0"
   }
 }
