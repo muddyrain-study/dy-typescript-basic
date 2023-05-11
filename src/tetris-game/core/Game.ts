@@ -1,4 +1,5 @@
 import GameConfig from "./GameConfig";
+import { Square } from "./Square";
 import { SquareGroup } from "./SquareGroup";
 import { createTetris } from "./Tetris";
 import { TetrisRule } from "./TetrisRule";
@@ -15,6 +16,9 @@ export class Game {
   private _timer?: NodeJS.Timer;
   // 自动下落的间隔时间
   private _duration: number = 1000;
+  // 当前游戏中已存在的方块
+  private exists: Square[] = [];
+
   constructor(private _viewer: GameViewer) {
     this.resetCenterPoint(GameConfig.nextSize.width, this._nextTetris);
     this._viewer.showNext(this._nextTetris);
@@ -57,7 +61,8 @@ export class Game {
   }
   control_bottom() {
     if (this._curTetris && this._gameStatus === GameStatus.playing) {
-      TetrisRule.move(this._curTetris, MoveDirection.bottom);
+      TetrisRule.moveDirectly(this._curTetris, MoveDirection.bottom);
+      this.hitDown();
     }
   }
 
@@ -68,7 +73,10 @@ export class Game {
     if (this._timer || this._gameStatus !== GameStatus.playing) return;
     this._timer = setInterval(() => {
       if (this._curTetris) {
-        TetrisRule.move(this._curTetris, MoveDirection.bottom);
+        if (!TetrisRule.move(this._curTetris, MoveDirection.bottom)) {
+          // 触底
+          this.hitDown();
+        }
       }
     }, this._duration);
   }
@@ -101,5 +109,13 @@ export class Game {
           })
       );
     }
+  }
+  /**
+   * 触底之后的操作
+   */
+  hitDown() {
+    // 将当前俄罗斯方块包含的小方块加入到已存在的方块数组中
+    this.exists.push(...(this._curTetris?.squares || []));
+    this.switchTetris();
   }
 }
