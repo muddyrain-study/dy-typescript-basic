@@ -13,9 +13,11 @@ group.squares.forEach((sq) => {
 });
 
 $("#btnDown").on("click", () => {
-  TetrisRule.moveDirectly(group, MoveDirection.bottom);
+  TetrisRule.move(group, MoveDirection.bottom);
 });
-$("#btnUp").on("click", () => {});
+$("#btnUp").on("click", () => {
+  group.rotate();
+});
 $("#btnRight").on("click", () => {
   TetrisRule.move(group, MoveDirection.right);
 });
