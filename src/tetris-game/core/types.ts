@@ -1,3 +1,5 @@
+import { SquareGroup } from "./SquareGroup";
+
 export interface Point {
   readonly x: number;
   readonly y: number;
@@ -26,4 +28,27 @@ export enum MoveDirection {
   left,
   right,
   bottom,
+}
+
+/**
+ * 游戏状态
+ */
+export enum GameStatus {
+  init, // 未开始
+  playing, // 进行中
+  pause, // 暂停
+  over, // 已结束
+}
+
+export interface GameViewer {
+  /**
+   *
+   * @param tetris 下一个方块对象
+   */
+  showNext(tetris: SquareGroup): void;
+  /**
+   *
+   * @param tetris 切换的方块对象
+   */
+  switch(tetris: SquareGroup): void;
 }

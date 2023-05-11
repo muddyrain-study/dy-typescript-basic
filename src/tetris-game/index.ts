@@ -1,26 +1,20 @@
-import { Square } from "./core/Square";
-import { SquareGroup } from "./core/SquareGroup";
-import { createTetris } from "./core/Tetris";
-import { TetrisRule } from "./core/TetrisRule";
-import { MoveDirection } from "./core/types";
-import { SquarePageViewer } from "./core/viewer/SquarePageViewer";
+import { Game } from "./core/Game";
+import { GamePageViewer } from "./core/viewer/GamePageViewer";
 import $ from "jquery";
+var g = new Game(new GamePageViewer());
 
-const group = createTetris({ x: 5, y: 2 });
-
-group.squares.forEach((sq) => {
-  sq.viewer = new SquarePageViewer(sq, $("#root")[0]);
+$("#btnPlay").on("click", () => {
+  g.start();
 });
-
-$("#btnDown").on("click", () => {
-  TetrisRule.move(group, MoveDirection.bottom);
-});
-$("#btnUp").on("click", () => {
-  TetrisRule.rotate(group);
-});
-$("#btnRight").on("click", () => {
-  TetrisRule.move(group, MoveDirection.right);
+$("#btnPause").on("click", () => {
+  g.pause();
 });
 $("#btnLeft").on("click", () => {
-  TetrisRule.move(group, MoveDirection.left);
+  g.control_left();
+});
+$("#btnRight").on("click", () => {
+  g.control_right();
+});
+$("#btnBottom").on("click", () => {
+  g.control_bottom();
 });

@@ -229,7 +229,7 @@ export const shapes = [
 export const colors = [
   "#ff0000",
   "#ffff00",
-  "#ffffff",
+  "#60ce72",
   "#ffaa00",
   "#0000ff",
   "#00fff7",

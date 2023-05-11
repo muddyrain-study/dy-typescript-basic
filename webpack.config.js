@@ -6,6 +6,9 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
  */
 const config = {
   entry: "./src/tetris-game/index.ts",
+  devServer: {
+    port: 6124,
+  },
   output: {
     path: path.resolve(__dirname, "./dist/tetris-game"),
     filename: "script/bundle.js",
