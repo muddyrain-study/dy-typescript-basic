@@ -2,6 +2,7 @@ import { Square } from "./core/Square";
 import { SquareGroup } from "./core/SquareGroup";
 import { createTetris } from "./core/Tetris";
 import { TetrisRule } from "./core/TetrisRule";
+import { MoveDirection } from "./core/types";
 import { SquarePageViewer } from "./core/viewer/SquarePageViewer";
 import $ from "jquery";
 
@@ -12,29 +13,12 @@ group.squares.forEach((sq) => {
 });
 
 $("#btnDown").on("click", () => {
-  const targetPoint = {
-    x: group.centerPoint.x,
-    y: group.centerPoint.y + 1,
-  };
-  if (TetrisRule.canIMove(group.shape, targetPoint)) {
-    group.centerPoint = targetPoint;
-  }
+  TetrisRule.moveDirectly(group, MoveDirection.bottom);
 });
-$("#btnUp").on("click", () => {
-  group.centerPoint = {
-    x: group.centerPoint.x,
-    y: group.centerPoint.y - 1,
-  };
-});
+$("#btnUp").on("click", () => {});
 $("#btnRight").on("click", () => {
-  group.centerPoint = {
-    x: group.centerPoint.x + 1,
-    y: group.centerPoint.y,
-  };
+  TetrisRule.move(group, MoveDirection.right);
 });
 $("#btnLeft").on("click", () => {
-  group.centerPoint = {
-    x: group.centerPoint.x - 1,
-    y: group.centerPoint.y,
-  };
+  TetrisRule.move(group, MoveDirection.left);
 });

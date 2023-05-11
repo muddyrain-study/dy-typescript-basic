@@ -3,7 +3,21 @@
  */
 
 import GameConfig from "./GameConfig";
-import { Point, Shape } from "./types";
+import { SquareGroup } from "./SquareGroup";
+import { MoveDirection, Point, Shape } from "./types";
+
+/**
+ * 判断该类型是不是 Point
+ */
+function isPoint(obj: any): obj is Point {
+  return typeof obj.x !== "undefined";
+}
+/**
+ * 判断该类型是不是 Point
+ */
+function isMoveDirection(obj: any): obj is MoveDirection {
+  return typeof obj === "number";
+}
 
 export class TetrisRule {
   /**
@@ -29,6 +43,54 @@ export class TetrisRule {
     });
     return !result;
   }
-
-  static move() {}
+  /**
+   * 控制移动
+   */
+  static move(
+    tetris: SquareGroup,
+    targetPointOrDirection: MoveDirection
+  ): boolean;
+  static move(tetris: SquareGroup, targetPointOrDirection: Point): boolean;
+  static move(
+    tetris: SquareGroup,
+    targetPointOrDirection: MoveDirection | Point
+  ): boolean {
+    if (isPoint(targetPointOrDirection)) {
+      const point = targetPointOrDirection;
+      if (TetrisRule.canIMove(tetris.shape, point)) {
+        tetris.centerPoint = point;
+        return true;
+      }
+    } else if (isMoveDirection(targetPointOrDirection)) {
+      const direction = targetPointOrDirection;
+      let targetPoint: Point;
+      switch (direction) {
+        case MoveDirection.left:
+          targetPoint = {
+            x: tetris.centerPoint.x - 1,
+            y: tetris.centerPoint.y,
+          };
+          break;
+        case MoveDirection.right:
+          targetPoint = {
+            x: tetris.centerPoint.x + 1,
+            y: tetris.centerPoint.y,
+          };
+          break;
+        case MoveDirection.bottom:
+          targetPoint = {
+            x: tetris.centerPoint.x,
+            y: tetris.centerPoint.y + 1,
+          };
+          break;
+        default:
+          return false;
+      }
+      return this.move(tetris, targetPoint);
+    }
+    return false;
+  }
+  static moveDirectly(tetris: SquareGroup, direction: MoveDirection) {
+    while (this.move(tetris, direction)) {}
+  }
 }
