@@ -93,4 +93,14 @@ export class TetrisRule {
   static moveDirectly(tetris: SquareGroup, direction: MoveDirection) {
     while (this.move(tetris, direction)) {}
   }
+  static rotate(tetris: SquareGroup): boolean {
+    // 得到旋转新的数据
+    const newShape = tetris.afterRotateShape();
+    if (this.canIMove(newShape, tetris.centerPoint)) {
+      tetris.rotate();
+      return true;
+    } else {
+      return false;
+    }
+  }
 }

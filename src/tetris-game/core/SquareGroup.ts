@@ -37,19 +37,19 @@ export class SquareGroup {
   protected isClock = true;
   afterRotateShape(): Shape {
     if (this.isClock) {
-      return (this._shape = this._shape.map((p) => {
+      return this._shape.map((p) => {
         return {
           x: -p.y,
           y: p.x,
         };
-      }));
+      });
     } else {
-      return (this._shape = this._shape.map((p) => {
+      return this._shape.map((p) => {
         return {
           x: p.y,
           y: -p.x,
         };
-      }));
+      });
     }
   }
   /**

@@ -16,7 +16,7 @@ $("#btnDown").on("click", () => {
   TetrisRule.move(group, MoveDirection.bottom);
 });
 $("#btnUp").on("click", () => {
-  group.rotate();
+  TetrisRule.rotate(group);
 });
 $("#btnRight").on("click", () => {
   TetrisRule.move(group, MoveDirection.right);
