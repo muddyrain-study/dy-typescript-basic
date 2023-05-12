@@ -13,6 +13,7 @@ const config = {
     path: path.resolve(__dirname, "./dist/tetris-game"),
     filename: "script/bundle.js",
   },
+  stats: {},
   module: {
     rules: [
       {
