@@ -20,8 +20,16 @@ export class Game {
   private _exists: Square[] = [];
   // 积分
   private _score: number = 0;
+  public get score() {
+    return this._score;
+  }
+  public set score(val) {
+    this._score = val;
+    this._viewer.showScore(val);
+  }
   constructor(private _viewer: GameViewer) {
     this.createNext();
+    this._viewer.init(this);
   }
   private createNext() {
     this._nextTetris = createTetris({ x: 0, y: 0 });
@@ -36,6 +44,7 @@ export class Game {
     this.createNext();
     this._curTetris = undefined;
     this._score = 0;
+    this._viewer.showScore(this._score);
   }
   /**
    * 游戏开始
@@ -169,13 +178,14 @@ export class Game {
     if (lineNum === 0) {
       return;
     } else if (lineNum === 1) {
-      this._score += 10;
+      this.score += 10;
     } else if (lineNum === 2) {
-      this._score += 25;
+      this.score += 25;
     } else if (lineNum === 3) {
-      this._score += 50;
+      this.score += 50;
     } else {
-      this._score += 100;
+      this.score += 100;
     }
+    this._viewer.showScore(this.score);
   }
 }

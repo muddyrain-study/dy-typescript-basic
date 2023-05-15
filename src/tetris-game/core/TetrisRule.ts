@@ -161,7 +161,7 @@ export class TetrisRule {
           sq.viewer.remove();
         }
         const index = exists.indexOf(sq);
-        exists.splice(index, 0);
+        exists.splice(index, 1);
       });
       exists
         .filter((sq) => sq.point.y < y)
