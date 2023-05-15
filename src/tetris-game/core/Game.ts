@@ -122,6 +122,9 @@ export class Game {
   hitDown() {
     //将当前的俄罗斯方块包含的小方块，加入到已存在的方块数组中。
     this._exists = this._exists.concat(this._curTetris!.squares);
+    // 处理移除
+    const num = TetrisRule.deleteSquares(this._exists);
+    console.log(num);
     this.switchTetris();
   }
 }

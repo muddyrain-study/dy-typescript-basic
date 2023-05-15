@@ -118,4 +118,62 @@ export class TetrisRule {
       return false;
     }
   }
+  /**
+   * 根据y坐标，得到所有y坐标为此值的方块
+   * @param exists
+   * @param y
+   */
+  private static getLineSquares(exists: Square[], y: number) {
+    return exists.filter((it) => it.point.y === y);
+  }
+
+  /**
+   * 从已存在的方块进行消除，并返回消除的行数
+   * @param exists
+   */
+  static deleteSquares(exists: Square[]): number {
+    // 1、获得y坐标数组
+    const ys = exists.map((sq) => sq.point.y);
+    // 2、获取最大和最小的坐标
+    const maxY = Math.max(...ys);
+    const minY = Math.min(...ys);
+    // 3、循环判断每一行是否可以消除
+    let num = 0;
+    for (let y = minY; y <= maxY; y++) {
+      if (this.deleteLine(exists, y)) {
+        num++;
+      }
+    }
+    return num;
+  }
+
+  /**
+   * 消除一行
+   * @param exists
+   * @param y
+   */
+  private static deleteLine(exists: Square[], y: number): boolean {
+    const squares = this.getLineSquares(exists, y);
+    if (squares.length === GameConfig.panelSize.width) {
+      // 这一行可以消除
+      squares.forEach((sq) => {
+        if (sq.viewer) {
+          sq.viewer.remove();
+        }
+        exists
+          .filter((sq) => sq.point.y < y)
+          .forEach((sq) => {
+            sq.point = {
+              ...sq.point,
+              y: sq.point.y + 1,
+            };
+          });
+        const index = exists.indexOf(sq);
+        exists.splice(index, 0);
+      });
+      return true;
+    } else {
+      return false;
+    }
+  }
 }
