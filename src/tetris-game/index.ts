@@ -18,3 +18,6 @@ $("#btnRight").on("click", () => {
 $("#btnBottom").on("click", () => {
   g.control_bottom();
 });
+$("#btnRotate").click(function () {
+  g.controlRotate();
+});

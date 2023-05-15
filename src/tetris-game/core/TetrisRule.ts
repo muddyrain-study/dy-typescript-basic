@@ -160,17 +160,17 @@ export class TetrisRule {
         if (sq.viewer) {
           sq.viewer.remove();
         }
-        exists
-          .filter((sq) => sq.point.y < y)
-          .forEach((sq) => {
-            sq.point = {
-              ...sq.point,
-              y: sq.point.y + 1,
-            };
-          });
         const index = exists.indexOf(sq);
         exists.splice(index, 0);
       });
+      exists
+        .filter((sq) => sq.point.y < y)
+        .forEach((sq) => {
+          sq.point = {
+            ...sq.point,
+            y: sq.point.y + 1,
+          };
+        });
       return true;
     } else {
       return false;
