@@ -61,5 +61,11 @@ export interface GameViewer {
   /**
    * 显示分数
    */
-  showScore(score:number):void
+  showScore(score: number): void;
+
+  onGamePause(): void;
+
+  onGameStart(): void;
+
+  onGameOver(): void;
 }

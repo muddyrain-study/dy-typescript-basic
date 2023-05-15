@@ -8,6 +8,9 @@ import { GameStatus, GameViewer, MoveDirection } from "./types";
 export class Game {
   // 游戏状态
   private _gameStatus: GameStatus = GameStatus.init;
+  public get gameStatus() {
+    return this._gameStatus;
+  }
   // 当前玩家操作的方块
   private _curTetris?: SquareGroup;
   // 下一个方块
@@ -15,7 +18,7 @@ export class Game {
   // 计时器
   private _timer?: NodeJS.Timer;
   // 自动下落的间隔时间
-  private _duration: number = 1000;
+  private _duration: number = 1500;
   // 当前游戏中已存在的方块
   private _exists: Square[] = [];
   // 积分
@@ -26,10 +29,22 @@ export class Game {
   public set score(val) {
     this._score = val;
     this._viewer.showScore(val);
+    const level = GameConfig.levels.find((it) => it.score < val);
+    if (level?.duration === this._duration) {
+      return;
+    }
+    this._duration = level?.duration || this._duration;
+    if (this._timer) {
+      clearInterval(this._timer);
+      this._timer = undefined;
+      this.autoDrop();
+    }
   }
+
   constructor(private _viewer: GameViewer) {
     this.createNext();
     this._viewer.init(this);
+    this._viewer.showScore(this.score);
   }
   private createNext() {
     this._nextTetris = createTetris({ x: 0, y: 0 });
@@ -64,6 +79,7 @@ export class Game {
       this.switchTetris();
     }
     this.autoDrop();
+    this._viewer.onGameStart();
   }
   /**
    * 游戏暂停
@@ -73,6 +89,7 @@ export class Game {
       this._gameStatus = GameStatus.pause;
       clearInterval(this._timer);
       this._timer = undefined;
+      this._viewer.onGamePause();
     }
   }
 
@@ -141,6 +158,7 @@ export class Game {
       this._gameStatus = GameStatus.over;
       clearInterval(this._timer);
       this._timer = undefined;
+      this._viewer.onGameOver();
       return;
     }
     this.createNext();

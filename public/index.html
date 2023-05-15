@@ -17,32 +17,58 @@
         background: #000;
         position: relative;
       }
-#tip{
-  margin-left: 1em;
-  border: 1px solid #666;
-}
+      #tip {
+        margin-left: 1em;
+        border: 1px solid #666;
+        padding: 15px;
+      }
       #next {
         position: relative;
         width: 120px;
         height: 120px;
       }
+      #score {
+        font-size: 4em;
+        color: #f20;
+        text-align: center;
+        font-weight: bold;
+      }
+      #msg {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: rgba(255, 255, 255, 0.3);
+        z-index: 999;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        display: none;
+      }
+      #msg p {
+        border: 2px solid #fff;
+        padding: 1em;
+        background: #f20;
+        color: #fff;
+      }
     </style>
   </head>
   <body>
     <div id="root">
-      <div id="panel"></div>
+      <div id="panel">
+        <div id="msg">
+          <p>游戏暂停</p>
+        </div>
+      </div>
       <div id="tip">
         <div id="next"></div>
         <div id="score"></div>
+        <p>使用光标进行游戏:</p>
+        <p>↑：旋转</p>
+        <p>↓：向下</p>
+        <p>←：左</p>
+        <p>→：右</p>
+        <p>空格：暂停/恢复/开始</p>
       </div>
-    </div>
-    <div style="display: flex; justify-content: center">
-      <button id="btnPause">暂停</button>
-      <button id="btnPlay">开始</button>
-      <button id="btnLeft">左</button>
-      <button id="btnRight">右</button>
-      <button id="btnBottom">下</button>
-      <button id="btnRotate">旋转</button>
     </div>
   </body>
 </html>
