@@ -15,7 +15,7 @@ export default {
     {
       score: 300,
       duration: 1000,
-    },
+       },
     {
       score: 1000,
       duration: 500,
