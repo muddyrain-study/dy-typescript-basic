@@ -8,6 +8,9 @@
   "dependencies": {
     "@types/jquery": "^3.5.16",
     "@types/node": "^18.15.11",
+    "axios": "^1.4.0",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.14.0",
     "jquery": "^3.6.4",
     "reflect-metadata": "^0.1.13"
   },
