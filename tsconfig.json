@@ -24,7 +24,9 @@
     // 禁用隐式this推断类型
     "noImplicitThis": false,
     // 开启实验性质的装饰器
-    "experimentalDecorators": true
+    "experimentalDecorators": true,
+    // 生成装饰器的元数据
+    "emitDecoratorMetadata": true
   },
   "include": ["./src/"]
 }
