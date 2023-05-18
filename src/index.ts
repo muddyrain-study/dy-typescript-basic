@@ -1,12 +1,20 @@
-interface U {
-  name: string;
-  sayHello(this: U): void;
-}
-const user: U = {
-  name: "zhangsan",
-  sayHello() {
-    console.log(this.name);
-  },
-};
+import { printObj, descriptor } from './Descriptor';
 
-const say = user.sayHello;
+@descriptor('文章')
+class Article {
+  @descriptor('标题')
+  title: string;
+
+  @descriptor('内容')
+  content: string;
+
+  @descriptor('日期')
+  date: Date;
+}
+
+const ar = new Article();
+ar.title = 'xxxx';
+ar.content = '嘻嘻嘻';
+ar.date = new Date();
+
+printObj(ar);
