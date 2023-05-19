@@ -1,5 +1,5 @@
-import { Color, Mark } from "./enums";
-import { Card, Joker } from "./types";
+import { Color, Mark } from './enums';
+import { Card, Joker } from '../types';
 
 interface PublishResult {
   player1: Deck;
@@ -32,24 +32,24 @@ export class Deck {
       }
     }
     this.cards.push({
-      type: "small",
+      type: 'small',
       getString: () => {
-        return "jo";
+        return 'jo';
       },
     } as Joker);
     this.cards.push({
-      type: "big",
+      type: 'big',
       getString: () => {
-        return "JO";
+        return 'JO';
       },
     } as Joker);
   }
   print() {
-    let result = "\n";
+    let result = '\n';
     this.cards.forEach((card, i) => {
-      result += card.getString() + " ";
+      result += card.getString() + ' ';
       if ((i + 1) % 4 === 0) {
-        result += "\n";
+        result += '\n';
       }
     });
     console.log(result);

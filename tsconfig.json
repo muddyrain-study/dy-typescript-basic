@@ -26,7 +26,12 @@
     // 开启实验性质的装饰器
     "experimentalDecorators": true,
     // 生成装饰器的元数据
-    "emitDecoratorMetadata": true
+    "emitDecoratorMetadata": true,
+    // 生成声明文件
+    "declaration": true,
+    // 源码地图
+    "sourceMap": true,
+    "typeRoots": ["./src/types", "./node_modules/@types/"]
   },
-  "include": ["./src/"]
+  "include": ["./src/", "index.d.ts", "*.d.ts"]
 }
